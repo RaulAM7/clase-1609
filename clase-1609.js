@@ -157,6 +157,7 @@ sumar2(5, 5, raiz)
 /* Funcion que recorre un array de nombres y evalua si la primera letra de cada nombre es una letra determinada 
 */
 
+/*
 let people = ['raul', 'joseluis', 'marta', 'pepe']
 
 let primeraLetraArrays = function() {
@@ -177,3 +178,75 @@ let primeraLetraArrays = function() {
 }
 
 primeraLetraArrays()
+*/
+
+
+
+/*
+
+4.- Function Scopes: Global vs local
+
+*/
+
+
+// Ejemplos para practicar y ver bien el scope de las variables
+
+const myName = 'Raul' // Esta variable es de scope global al estar definida fuera de un bloque
+
+function showSurname () {
+
+    const surname = 'Artiles'
+    console.log(surname) // Esta variable es de alcance de bloque, solo existe dentro de la funcion showSurname
+}
+
+//console.log(surname)
+showSurname()
+
+
+// SACANDO VARIALBES LOCALES PARA UN NIVEL JERARQUICO SUPERIOR PARA PODER ACCEDER A ELLAS 
+
+const nomnbre = 'Raul'
+
+function muestraApellido () {
+
+    const apellido = 'Mendoza'
+
+    //console.log('Mi edad es: ' + edad)  ---> No puede entrar a la variable edad porque no esta definida, no puede entrar al bloque de edad
+
+    function muestraEdad () {
+
+        const edad = 80 
+        //console.log('Mi edad es: ' + edad)
+
+        console.log('Mi apellido es: ' + apellido)
+        
+        return edad
+    
+    }   
+    
+    let age = muestraEdad()  // Llamando a la funcion muestraEdad () y almacenando su return en esta variable podemos trabajar con ella
+    console.log('Mi edad es: ' + age)
+}
+
+muestraApellido()
+
+
+// QUIZ FUNCTION SCOPES 
+
+
+var globalPar = 'I am global'
+
+function declarationBar (string) {
+
+    let  localBar = string
+}
+
+
+function checkScope () {
+
+    var globalVar = 'I am global'
+    console.log(localBar)    // GlobalPar y Global Var si se pueden acceder aqui, localBar no
+
+}
+
+checkScope()
