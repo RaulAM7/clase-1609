@@ -238,15 +238,76 @@ var globalPar = 'I am global'
 
 function declarationBar (string) {
 
-    let  localBar = string
+    let  localBar = "blabla"
 }
 
 
 function checkScope () {
 
     var globalVar = 'I am global'
-    console.log(localBar)    // GlobalPar y Global Var si se pueden acceder aqui, localBar no
+    console.log(globalVar)    // GlobalPar y Global Var si se pueden acceder aqui, localBar no
 
 }
 
 checkScope()
+
+
+/* VARIABLE SHADOWING -> Cuando declaramos una variable con un nombre igual que otra variable que tengamos declarada y definida previamente
+
+
+*/
+
+
+var a = 1
+var b = 2
+
+function innerBlock () {
+
+    a = 4
+    var b = 3
+
+}
+
+innerBlock()
+console.log(a)  // Esto da 4, aunque el bloque de codigo de la funcion no se llame, como es de ambito global si que se lee esta nueva redefinición
+console.log(b)  // Esto da 2, dos lineas atras b tiene un valor de retorno de 3 pero porque se trata de una variable "b" de scope local redeclarada dentro de la función
+
+
+/* BUSQUEDA DE VARIABLE DECLARATION TRAS REFERENCE -> JS LO HACEN BUSCANDO DEL SCOPE DE LA REFERENCIA Y LUEGO VA SALTANDO A LOS SCOPES PADRES 
+
+
+*/
+
+
+var a = 1
+
+function inner() {
+    console.log('Llamada 1 inner')
+
+    // 4º ¿Hay alguna variable "a" en este bloque?
+    function inner1() {
+        console.log('Llamada 1 inner1')
+
+        // 3º ¿Hay alguna variable "a" en este bloque?
+        function inner2() {
+            console.log('Llamada 1 inner2')
+
+            // 2º ¿Hay alguna variable "a" en este bloque?
+            function inner3() {
+                console.log('Llamada 1 inner3')
+
+                // 1º Hay alguna variable "a" en este bloque?
+                console.log(a)
+            }
+            inner3()
+            console.log('Llamada 2 inner3')
+        }
+        inner2()
+        console.log('Llamada 2 inner2')
+
+    }
+    inner1()
+    console.log('Llamada 2 inner1')
+}
+inner()
+
