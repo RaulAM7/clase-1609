@@ -115,3 +115,65 @@ let cuentAtras = function (num) {
 }
 
 cuentAtras(5)
+
+
+/*
+
+Usando funciones dentro de otras funciones
+
+*/
+
+
+function sumar2 (num1, num2, resultFin){
+
+    console.log('Funcion sumar2 iniciada: ')
+
+    return resultFin(num1 + num2)
+}
+
+
+function logDone (placeholder) {
+
+    console.log('Terminado! El resultado es ' + placeholder)
+}
+
+
+
+function raiz (placeholder) {
+
+    console.log('Terminado! El resultado es ' + placeholder*placeholder)
+}
+
+sumar2(5, 5, logDone)
+sumar2(5, 5, raiz)
+
+
+
+/* Funciones Anonimas
+
+*/
+
+
+/* Funcion que recorre un array de nombres y evalua si la primera letra de cada nombre es una letra determinada 
+*/
+
+let people = ['raul', 'joseluis', 'marta', 'pepe']
+
+let primeraLetraArrays = function() {
+
+    for (let i = 0 ; i < people.length -1 ; i++) {
+
+        //console.log(people.length)
+
+        if (people[i][0] === "r") {
+
+            return console.log('Primera letra es r, palabra ' + people[i])
+            
+        } else {
+
+            return console.log(people[i])
+        }
+    }
+}
+
+primeraLetraArrays()
